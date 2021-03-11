@@ -15,7 +15,7 @@ function App () {
     if(!pageState.search){
       setPageState({...pageState, directory: people})
     }else{
-      setPageState({...pageState, directory: people.filter(user=> (user.name.first.includes(pageState.search) === true||user.name.last.includes(pageState.search) === true))})
+      setPageState({...pageState, directory: people.filter(user=> (`${user.name.first} ${user.name.last}`).toLowerCase().includes(pageState.search) === true)})
     }
   },[pageState])
 

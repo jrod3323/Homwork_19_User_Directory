@@ -5,22 +5,22 @@ import DirectoryContext from "../utils/DirectoryContext"
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function Table() {
 
-  const {directory} = useContext(DirectoryContext)
+  const pageState = useContext(DirectoryContext)
 
   return (
     <table className="container">
         <tr> 
             <th>Picture</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th className="sort" onClick={event => pageState.directory = pageState.directory.sort((function(a, b) {return a.name.first > b.name.first ? 1:-1;}))}>Name ⬇️</th>
+            <th className="sort" onClick={event => pageState.directory = pageState.directory.sort((function(a, b) {return a.email > b.email ? 1:-1;}))}>Email ⬇️</th>
             <th>Cell</th>
         </tr>
-        {directory.map(user => (
+        {pageState.directory.map(user => (
         <tr> 
-            <th><img src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last}`}></img></th>
-            <th>{`${user.name.first} ${user.name.last}`}</th>
-            <th>{user.email}</th>
-            <th>{user.cell}</th>
+            <td><img src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last}`}></img></td>
+            <td>{`${user.name.first} ${user.name.last}`}</td>
+            <td>{user.email}</td>
+            <td>{user.cell}</td>
         </tr>))}
     </table>
   );

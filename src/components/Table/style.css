@@ -10,3 +10,9 @@ tr {
     border-style: solid;
     border-width: 2px;
 }
+
+.sort:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: purple
+}

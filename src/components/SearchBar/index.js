@@ -18,17 +18,13 @@ function SearchBar(prop) {
           className="form-control"
           placeholder="Search for a User"
           id="user-choice"
-          onChange = {event => pageState.search = event.target.value}
+          onChange = {event => pageState.search = event.target.value.toLowerCase()}
         />
         <datalist id="users">
           {pageState.directory.map(user=> (
           <option value={`${user.name.first} ${user.name.last}`} key={`${user.name.first} ${user.name.last}`}/>
           ))}
         </datalist>
-        
-        <button type="submit" className="btn btn-success">
-          Search
-        </button>
       </div>
     </form>
   );
