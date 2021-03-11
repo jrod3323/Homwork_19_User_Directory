@@ -3,14 +3,24 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Table from "./components/Table";
 import DirectoryContext from "./components/utils/DirectoryContext";
-import people from "./directory.json"
+import people from "./directory.json";
 
 function App () {
+  const [pageState, setPageState] = useState({
+    directory : people,
+    search:"",
+  })
 
-  const [directory, setDirectory] = useState(people)
+  useEffect(()=> {
+    if(!pageState.search){
+      setPageState({...pageState, directory: people})
+    }else{
+      setPageState({...pageState, directory: people.filter(user=> (user.name.first.includes(pageState.search) === true||user.name.last.includes(pageState.search) === true))})
+    }
+  },[pageState])
 
     return (
-            <DirectoryContext.Provider value={directory}>
+            <DirectoryContext.Provider value={pageState}>
               <Header />
               <SearchBar/>
               <Table/>

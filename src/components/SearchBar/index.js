@@ -5,7 +5,7 @@ import "./style.css";
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function SearchBar(prop) {
 
-  const directory = useContext(DirectoryContext)
+  const pageState = useContext(DirectoryContext)
 
   return (
     <form className="search container">
@@ -18,9 +18,10 @@ function SearchBar(prop) {
           className="form-control"
           placeholder="Search for a User"
           id="user-choice"
+          onChange = {event => pageState.search = event.target.value}
         />
         <datalist id="users">
-          {directory.map(user=> (
+          {pageState.directory.map(user=> (
           <option value={`${user.name.first} ${user.name.last}`} key={`${user.name.first} ${user.name.last}`}/>
           ))}
         </datalist>

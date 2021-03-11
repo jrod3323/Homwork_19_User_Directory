@@ -5,7 +5,7 @@ import DirectoryContext from "../utils/DirectoryContext"
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function Table() {
 
-  const directory = useContext(DirectoryContext)
+  const {directory} = useContext(DirectoryContext)
 
   return (
     <table className="container">
