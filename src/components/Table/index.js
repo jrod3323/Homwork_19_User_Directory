@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./style.css";
+import DirectoryContext from "../utils/DirectoryContext"
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
-function Table(props) {
+function Table() {
+
+  const directory = useContext(DirectoryContext)
+
   return (
-    <table>
+    <table className="container">
         <tr> 
             <th>Picture</th>
             <th>Name</th>
             <th>Email</th>
             <th>Cell</th>
         </tr>
+        {directory.map(user => (
         <tr> 
-            <th><img src={"https://randomuser.me/api/portraits/thumb/men/46.jpg"} alt={"Jared Ackley"}></img></th>
-            <th>Jared Ackley</th>
-            <th>jrod3323@gmail.com</th>
-            <th>(419)584-6006</th>
-        </tr>
+            <th><img src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last}`}></img></th>
+            <th>{`${user.name.first} ${user.name.last}`}</th>
+            <th>{user.email}</th>
+            <th>{user.cell}</th>
+        </tr>))}
     </table>
   );
 }
